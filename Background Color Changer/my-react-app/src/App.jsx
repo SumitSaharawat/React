@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 function App() {
-  const [color, setColor] = useState("red");
+  const [color, setColor] = useState("black");
 
   return (
     // Tailwind classes handle the layout: min-h-screen makes it full height, 
@@ -17,7 +17,7 @@ function App() {
       </h1>
       
       {/* A flex container to space out the buttons cleanly */}
-      <div className="flex gap-4">
+      <div className="flex gap-1">
         <button
           type="button"
           onClick={() => setColor("blue")}
@@ -48,6 +48,14 @@ function App() {
           className="px-6 py-2 bg-green-500 hover:bg-green-700 text-white font-semibold rounded-lg shadow-md transition-transform hover:scale-105 cursor-pointer"
         >
           Green
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setColor("orange")}
+          className="px-6 py-2 bg-orange-500 hover:bg-orange-700 text-white font-semibold rounded-lg shadow-md transition-transform hover:scale-105 cursor-pointer"
+        >
+          Orange
         </button>
       </div>
 
