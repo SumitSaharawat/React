@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 
 function App() {
@@ -9,8 +9,8 @@ function App() {
   const [message, setMessage] = useState("")
   const [color, setColor] = useState("")
 
-  const CalculateBmi = (e) => {
-      e.preventDefault();
+  useEffect(() => {
+      
       if(!height || !weight || height < 0 || weight <0)
       {
         setMessage("Please Enter Valid Height and Weight")
@@ -34,7 +34,7 @@ function App() {
           setColor("red")
         }
       }
-  }
+}, [weight, height])
 
   
 
@@ -44,7 +44,7 @@ function App() {
         <h2>BMI Calculator</h2>
 
         {/* The Input Form */}
-        <form className="bmi-form" onSubmit={CalculateBmi}>
+        <form className="bmi-form">
           <div className="input-group">
             <label htmlFor="weight">Weight (kg)</label>
             <input 
@@ -64,10 +64,6 @@ function App() {
               onChange={(e) => {setHeight(e.target.value)}}
             />
           </div>
-
-          <button type="submit" className="calculate-btn" >
-            Calculate BMI
-          </button>
         </form>
 
         {/* The Results Display (Hardcoded for now) */}
