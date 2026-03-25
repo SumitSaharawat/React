@@ -1,10 +1,10 @@
-import { use, useState } from 'react'
+import { useState } from 'react'
 import './App.css'
 
 function App() {
   const [weight, setWeight] = useState(0)
   const [height, setHeight] = useState(0)
-  const [bmi, setBmi] = useState(0)
+  const [bmi, setBmi] = useState("- -")
   const [category, setCategory] = useState("- -")
   const [message, setMessage] = useState("")
   const [color, setColor] = useState("")
