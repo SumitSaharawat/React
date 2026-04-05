@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { values } from "./Values";
 
+
 function Question(){
 
     const questionBank = values[0].questions;
     const [answer, setAnswer] = useState({});
+    const [qIndex, setQindex] = useState(0);
 
     const handleAnswers = (index, value) =>{
         setAnswer((prev) => {
@@ -23,13 +25,23 @@ function Question(){
         <>
         <div>
             <h1>Quiz-Application</h1>
-            {questionBank.map((question, qIndex) => (
-                <div key={qIndex}>
+            <h2>Question Pallet
+                <span style={{marginLeft: '300px'}}>TotalScore: {calculatedScore}/{questionBank.length}</span>
+            </h2>
+            {questionBank.map((_, index) => (
+                <button
+                key={index}
+                onClick={() => (setQindex(index))}
+                style={{ backgroundColor: 'grey', padding: '10px', cursor: 'pointer',  }}
+                >{index+1}</button>
+            )
+            )}
+                 <div key={qIndex}>
                     <h2>Question: {qIndex+1}</h2>
-                    <p>{question.Q}</p>
+                    <p>{questionBank[qIndex].Q}</p>
                     <div className="options-group" style={{ margin: '20px 0' }}>
-                        {question.O.map((option, index) => (
-                            <label key={index} style={{ display: 'block', margin: '10px 0', cursor: 'pointer' }}>
+                        {questionBank[qIndex].O.map((option, index) => (
+                            <label key={index} style={{ display: 'block', margin: '10px', cursor: 'pointer' }}>
                                 <input 
                                     type="radio" 
                                     name={`quiz-option-${qIndex}`} 
@@ -41,8 +53,6 @@ function Question(){
                         ))}
                     </div>
                 </div>
-            ))}
-            <span>TotalScore: {calculatedScore}/{questionBank.length}</span>
         </div>
         </>
     );
