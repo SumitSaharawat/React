@@ -16,11 +16,25 @@ function App() {
     lastName: "",
     email: "",
     phone: "",
-    address:"",
     offer:""
   })
 
   const nextStep = () => {
+
+    if (step === 1) {
+      if (formData.firstName === "" || formData.email === "" || formData.lastName === "" || formData.phone === "") {
+        alert("Please fill in your details!");
+        return;
+      }
+    }
+
+    if (step === 2) {
+      if (formData.offer === "") {
+        alert("Please select a plan!");
+        return;
+      }
+    }
+
     if (step < totalSteps) setStep((prev) => prev + 1);
   }
   const prevStep = () => {
@@ -34,6 +48,10 @@ function App() {
       case 3 : return <FormSubmit data={formData} />
       default: return null;
     }
+  }
+
+  const handleData = () => {
+    if(data.name === ""){}
   }
 
   return (
