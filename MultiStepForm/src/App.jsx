@@ -9,14 +9,15 @@ import FormSubmit from './components/FormSubmit';
 
 function App() {
   const [step, setStep] = useState(1)
-  const totalSteps = 6; // We have 6 cases in switch
+  const totalSteps = 3; // We have 6 cases in switch
 
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
     phone: "",
-    address:""
+    address:"",
+    offer:""
   })
 
   const nextStep = () => {
@@ -30,10 +31,7 @@ function App() {
     switch(step){
       case 1 : return <FirstName data={formData} setData={setFormData}/>
       case 2 : return <LastName data={formData} setData={setFormData}/>
-      case 3 : return <Email data={formData} setData={setFormData}/>
-      case 4 : return <Phone data={formData} setData={setFormData}/>
-      case 5 : return <Address data={formData} setData={setFormData}/>
-      case 6 : return <FormSubmit data={formData} />
+      case 3 : return <FormSubmit data={formData} />
       default: return null;
     }
   }
@@ -56,15 +54,15 @@ function App() {
         </div>
 
         <div className="btn-group">
-          {step > 1 && step <= 6 && (
+          {step > 1 && step <= totalSteps && (
             <button className="btn-prev" onClick={prevStep}>
               Back
             </button>
           )}
           
-          {step < 6 && (
+          {step < totalSteps && (
             <button className="btn-next" onClick={nextStep}>
-              {step === 5 ? "Review" : "Next"}
+              {step === totalSteps-1 ? "Review" : "Next"}
             </button>
           )}
         </div>

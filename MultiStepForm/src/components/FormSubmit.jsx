@@ -60,6 +60,10 @@ const FormSubmit = ({ data }) => {
           <span style={styles.label}>Address:</span>
           <span style={styles.value}>{data.address || "N/A"}</span>
         </li>
+        <li style={styles.item}>
+          <span style={styles.label}>Plan:</span>
+          <span style={styles.value}>{data.offer || "N/A"}</span>
+        </li>
       </ul>
       <p style={{ marginTop: '20px', color: '#44E610', fontWeight: 'bold', textAlign: 'center' }}>
         ✓ Ready to submit!
