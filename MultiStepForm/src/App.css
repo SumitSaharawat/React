@@ -1,0 +1,86 @@
+/* Container for the whole app */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f4f7f6;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* The Form Card */
+.form-card {
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+/* Progress Bar Wrapper */
+.progress-container {
+  width: 100%;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  height: 8px;
+  overflow: hidden;
+}
+
+/* The actual moving bar */
+.progress-bar {
+  height: 100%;
+  background-color: #44E610;
+  transition: width 0.4s ease;
+}
+
+/* Navigation Buttons Container */
+.btn-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  gap: 10px;
+}
+
+button {
+  padding: 10px 25px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.btn-next {
+  background-color: #44E610;
+  color: white;
+  flex: 1;
+}
+
+.btn-next:hover {
+  background-color: #39c20d;
+}
+
+.btn-prev {
+  background-color: #ccc;
+  color: #333;
+}
+
+.btn-prev:hover {
+  background-color: #bbb;
+}
+
+/* Inputs (Apply this inside your sub-components) */
+input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-sizing: border-box; /* Crucial for width */
+  font-size: 16px;
+}
