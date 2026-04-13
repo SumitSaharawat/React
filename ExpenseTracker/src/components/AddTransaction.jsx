@@ -1,123 +1,91 @@
 import { useState } from "react";
-import styled from "styled-components";
+import "./AddTransaction.css";
 
-const Container = styled.div`
-  text-align: center;
-  border: 1px solid #000;
-  padding: 20px;
-  border-radius: 5px;
-  margin-bottom: 25px;
-  margin-left: 100px;
-  margin-right: 100px;
-`;
-
-const Input = styled.input`
-  width: 80%;
-  padding: 15px 20px;
-  outline: none;
-  border-radius: 5px;
-  margin: 5px 0;
-  border: 1px solid #000;
-`;
-
-const RadioContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const Label = styled.label`
-  margin-left: 10px;
-  cursor: pointer;
-`;
-
-const RadioBtn = styled(RadioContainer)`
-  margin: 10px 20px 10px 0;
-`;
-
-const SubmitBtn = styled.button`
-  background-color: #44E610;
-  color: #fff;
-  border-radius: 5px;
-  padding: 10px 20px;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  &:hover {
-    background-color: #44E610;
-  }
-`;
-
-const AddTransaction = ({transaction, setTransaction}) => {
+const AddTransaction = ({ transaction, setTransaction }) => {
+  const [amount, setAmount] = useState("");
+  const [detail, setDetail] = useState("");
+  const [showInput, setShowInput] = useState(false);
+  const [category, setCategory] = useState("");
   
-    const [amount, setAmount] = useState(0);
-    const [detail, setDetail] = useState("");
-    const [showInput, setShowInput] = useState(false);
+  const categories = ["Entertainment", "Grocery", "Rent", "Car", "Salary"];
 
-    let totalAmount = 0;
-    let budget = 15000;
-    transaction.map((money) => {
-        totalAmount += money.money;
-        budget -= money.money;
-    })
+  // Logic for calculations
+  let totalAmount = 0;
+  let budget = 15000;
+  transaction.forEach((money) => {
+    totalAmount += money.money;
+    budget -= money.money;
+  });
 
-    const handleTransaction = () => {
-        const newTransaction = {
-            'money': Number(amount),
-            'text': detail,
-            'id' : Date.now()
-        }
+  const handleTransaction = () => {
+    if (!amount || !category) return; // Simple validation
 
-        setTransaction([...transaction, newTransaction]);
-        setAmount("");
-        setDetail("");
-        setShowInput(false);
-        
-    }
+    const newTransaction = {
+      money: Number(amount),
+      text: detail,
+      id: Date.now(),
+      category: category,
+    };
+
+    setTransaction([...transaction, newTransaction]);
+    
+    // Reset form
+    setAmount("");
+    setDetail("");
+    setCategory("");
+    setShowInput(false);
+  };
 
   return (
-    <Container>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-    
-            <span style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
-                Budget: ₹{budget}
-            </span>
-            <span style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
-                Expense: ₹{totalAmount}
-            </span>
-            <button
-                onClick={() => setShowInput(true)}
-                style={{ 
-                    backgroundColor: "#44E610", 
-                    borderRadius: "5px", 
-                    color: "white", 
-                    padding: "8px 16px", // Added some padding so it looks like a real button!
-                    border: "none",
-                    cursor: "pointer"
-                }}
-            >
-                Add
-            </button>
+    <div className="transaction-container">
+      <div className="balance-row">
+        <span className="balance-text">Budget: ₹{budget}</span>
+        <span className="balance-text">Expense: ₹{totalAmount}</span>
+        <button className="btn-primary" onClick={() => setShowInput(!showInput)}>
+          {showInput ? "Cancel" : "Add"}
+        </button>
+      </div>
+
+      {showInput && (
+        <div className="form-content">
+          <input
+            className="input-field"
+            type="number"
+            placeholder="Enter Amount"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+          />
+
+          <input
+            className="input-field"
+            type="text"
+            placeholder="Enter Details"
+            value={detail}
+            onChange={(e) => setDetail(e.target.value)}
+          />
+
+          <div style={{ textAlign: 'left', fontSize: "14px", fontWeight: "bold" }}>
+            Select Category
+          </div>
+
+          <div className="category-wrapper">
+            {categories.map((cat) => (
+              <div
+                key={cat}
+                className={`chip ${category === cat ? "active" : ""}`}
+                onClick={() => setCategory(cat)}
+              >
+                {cat}
+              </div>
+            ))}
+          </div>
+
+          <button className="btn-primary full-width" onClick={handleTransaction}>
+            Add Transaction
+          </button>
         </div>
-
-    {showInput && (
-        <>
-            <Input
-                type={"number"}
-                placeholder="Enter Amount"
-                onChange={(e) => (setAmount(e.target.value))}
-            />
-
-            <Input
-                type={"text"}
-                placeholder="Enter Details"
-                onChange={(e) => (setDetail(e.target.value))}
-            />
-
-            <SubmitBtn onClick={handleTransaction}>Add Transaction</SubmitBtn>
-        </>
-     )}
-    </Container>
+      )}
+    </div>
   );
 };
 

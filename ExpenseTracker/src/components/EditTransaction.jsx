@@ -1,83 +1,65 @@
 import { useState } from "react";
+import "./EditTransaction.css"; // Import the new styles
 
-const EditTransaction = ({transaction, deleteTransaction, updateText}) => {
+const EditTransaction = ({ transaction, deleteTransaction, updateText }) => {
+    const [isEditing, setIsEditing] = useState(false);
+    const [newText, setNewText] = useState(transaction.text);
 
-    const [isEdititng, setIsEditing] = useState(null)
-    const [newText, setNewText] = useState("")
+    const handleSave = () => {
+        updateText(transaction.id, newText);
+        setIsEditing(false);
+    };
+
+    const handleCancel = () => {
+        setNewText(transaction.text); 
+        setIsEditing(false);
+    };
 
     return (
-        <>
-            <li 
-                key={transaction.id}
-                style={{ 
-                    display: 'flex', 
-                    justifyContent: 'space-around', 
-                    padding: '10px', 
-                    borderBottom: '1px solid #eee', 
-                    backgroundColor: 'black',
-                    color: "white",
-                    borderRadius: "5px"
-                }}>
-                {isEdititng === transaction.id ? (
-                    <>
-                        <input 
-                            type="text" 
-                            value={newText} 
-                            onChange={(e) => setNewText(e.target.value)}
-                            style={{ borderRadius: '4px', padding: '2px 5px' }}
-                        />
-                        <button
-                        onClick={() => {updateText(transaction.id, newText);
-                                        setIsEditing("");}}
-                        style={{ 
-                            backgroundColor: "green", 
-                            borderRadius: "5px", 
-                            color: "white", 
-                            padding: "5px 16px",
-                            border: "none",
-                            cursor: "pointer"
-                        }}>Save</button>
-                        <button
-                        onClick={() => setIsEditing("")}
-                        style={{ 
-                            backgroundColor: "grey", 
-                            borderRadius: "5px", 
-                            color: "white", 
-                            padding: "5px 16px",
-                            border: "none",
-                            cursor: "pointer"
-                        }}>Cancel</button>
-                    </>
-                 ) : (
-                    <>
+        <li className={`transaction-item bg-${transaction.category}`}>
+            {isEditing ? (
+                <>
+                    <input 
+                        className="edit-input"
+                        type="text" 
+                        value={newText} 
+                        onChange={(e) => setNewText(e.target.value)}
+                        autoFocus
+                    />
+                    <div className="btn-group">
+                        <button className="action-btn btn-save" onClick={handleSave}>
+                            Save
+                        </button>
+                        <button className="action-btn btn-cancel" onClick={handleCancel}>
+                            Cancel
+                        </button>
+                    </div>
+                </>
+            ) : (
+                <>
+                    <div className="transaction-info">
                         <span>{transaction.text}</span>
-                        <span>₹{transaction.money}</span>
-                
-                        <button
-                        onClick={() => deleteTransaction(transaction.id)}
-                        style={{ 
-                            backgroundColor: "red", 
-                            borderRadius: "5px", 
-                            color: "white", 
-                            padding: "5px 16px",
-                            border: "none",
-                            cursor: "pointer"
-                        }}>Remove</button>
-                        <button
-                        onClick={() => setIsEditing(transaction.id)}
-                        style={{ 
-                            backgroundColor: "orange", 
-                            borderRadius: "5px", 
-                            color: "white", 
-                            padding: "5px 16px",
-                            border: "none",
-                            cursor: "pointer"
-                        }}>Edit</button>
-                    </>
-                 )}
-            </li>
-        </>
-    )
-}
+                        <span style={{ color: '#44E610' }}>₹{transaction.money}</span>
+                    </div>
+            
+                    <div className="btn-group">
+                        <button 
+                            className="action-btn btn-edit" 
+                            onClick={() => setIsEditing(true)}
+                        >
+                            Edit
+                        </button>
+                        <button 
+                            className="action-btn btn-remove" 
+                            onClick={() => deleteTransaction(transaction.id)}
+                        >
+                            Remove
+                        </button>
+                    </div>
+                </>
+            )}
+        </li>
+    );
+};
 
 export default EditTransaction;

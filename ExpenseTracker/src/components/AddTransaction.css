@@ -1,0 +1,87 @@
+/* Container for the overall component */
+.transaction-container {
+  text-align: center;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 12px;
+  margin: 20px auto;
+  max-width: 600px;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Header section with Budget and Expense */
+.balance-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.balance-text {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Common button styling */
+.btn-primary {
+  background-color: #44E610;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+/* Form Styling */
+.input-field {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-sizing: border-box; /* Prevents overflow */
+  outline: none;
+}
+
+.input-field:focus {
+  border-color: #44E610;
+}
+
+/* Category Chips */
+.category-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 15px 0 25px 0;
+}
+
+.chip {
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  color: #666;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+/* This class is applied conditionally via React */
+.chip.active {
+  border-color: #44E610;
+  background-color: #f0fff0;
+  color: #2d8a0a;
+  font-weight: bold;
+}
+
+.full-width {
+  width: 100%;
+}

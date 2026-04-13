@@ -37,6 +37,7 @@ function App() {
 
     if (step < totalSteps) setStep((prev) => prev + 1);
   }
+  
   const prevStep = () => {
     if (step > 1) setStep((prev) => prev - 1);
   }
