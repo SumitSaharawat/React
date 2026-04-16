@@ -1,0 +1,54 @@
+.details-container {
+    margin-top: 20px;
+}
+
+.details-heading {
+    font-size: 25px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+/* 1. The Boundary Box */
+.search-wrapper {
+    position: relative;
+    width: 100%; 
+    max-width: 400px;
+    margin-bottom: 20px;
+}
+
+/* 2. The Input Field */
+.search-input {
+    width: 100%;
+    padding: 12px 15px;
+    padding-right: 45px; /* Keeps text from sliding under icon */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.search-input:focus {
+    border-color: #44E610; /* Changed to match your theme color */
+}
+
+/* 3. The Floating Button */
+.search-icon-btn {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+}
+
+/* Hover effect for the SVG inside the button */
+.search-icon-btn:hover svg {
+    stroke: #44E610; 
+}

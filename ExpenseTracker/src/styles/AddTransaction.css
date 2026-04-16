@@ -10,6 +10,44 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
+/* Container for the Initial Budget Setup */
+.budget-setup-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding: 30px;
+  background-color: #44E610;
+  border-radius: 10px;
+  border: 2px solid#44E610; /* Dashed border suggests 'setup' mode */
+  margin-bottom: 20px;
+}
+
+.budget-setup-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #02295a;
+  margin: 0;
+}
+
+/* Specific styling for the budget input to make it feel bigger */
+.budget-input {
+  width: 100%;
+  max-width: 300px;
+  padding: 15px;
+  font-size: 1.2rem;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.budget-input:focus {
+  border-color: #44E610;
+  box-shadow: 0 0 8px rgba(68, 230, 16, 0.2);
+}
+
 /* Header section with Budget and Expense */
 .balance-row {
   display: flex;
@@ -27,10 +65,11 @@
 /* Common button styling */
 .btn-primary {
   background-color: #44E610;
-  color: white;
+  color: black;
   padding: 10px 20px;
   border: none;
   border-radius: 6px;
+  border: 2px solid black;
   font-weight: 600;
   cursor: pointer;
   transition: opacity 0.2s;

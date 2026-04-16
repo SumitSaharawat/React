@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./EditTransaction.css"; // Import the new styles
+import "../styles/EditTransaction.css"; // Import the new styles
 
 const EditTransaction = ({ transaction, deleteTransaction, updateText }) => {
     const [isEditing, setIsEditing] = useState(false);

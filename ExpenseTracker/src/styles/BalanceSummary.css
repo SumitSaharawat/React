@@ -1,0 +1,42 @@
+/* BalanceSummary.css */
+
+.summary-container {
+  /* Matches the original container exactly */
+  text-align: center;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 12px;
+  margin: 20px auto; 
+  max-width: 600px;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.balance-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.balance-text {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Kept the button style here so the component is fully independent */
+.btn-summary {
+  background-color: #44E610;
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  border: 2px solid black;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn-summary:hover {
+  opacity: 0.9;
+}
