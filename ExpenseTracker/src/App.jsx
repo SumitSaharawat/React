@@ -42,6 +42,7 @@ function App() {
             <Link to="/" className="nav-link">Dashboard</Link>
             <Link to="/transactions" className="nav-link">Transactions</Link>
             <Link to="/categories" className="nav-link">Categories</Link>
+            <Link to="/goals" className="nav-link">Goals</Link>
             <button onClick={toggleTheme} className="theme-btn">
               {toggle ? "☀️" : "🌙"}
             </button>

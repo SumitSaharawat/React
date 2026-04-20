@@ -5,6 +5,7 @@ const AddTransaction = ({ transaction, setTransaction, showInput, setShowInput, 
   const [amount, setAmount] = useState("");
   const [detail, setDetail] = useState("");
   const [category, setCategory] = useState("");
+  const [notes, setNotes] = useState("");
 
   const handleTransaction = () => {
     if (!amount || !category) return; 
@@ -14,6 +15,7 @@ const AddTransaction = ({ transaction, setTransaction, showInput, setShowInput, 
       text: detail,
       id: Date.now(),
       category: category,
+      notes: notes,
       date: new Date().toISOString().split('T')[0]
     };
 
@@ -45,6 +47,14 @@ const AddTransaction = ({ transaction, setTransaction, showInput, setShowInput, 
                             placeholder="Enter Details"
                             value={detail}
                             onChange={(e) => setDetail(e.target.value)}
+                        />
+
+                        <input
+                            className="input-field"
+                            type="text"
+                            placeholder="Add any Notes"
+                            value={notes}
+                            onChange={(e) => setNotes(e.target.value)}
                         />
 
                         <div style={{ textAlign: 'left', fontSize: "14px", fontWeight: "bold", color: "#ddd"}}>

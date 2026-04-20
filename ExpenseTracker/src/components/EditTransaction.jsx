@@ -41,6 +41,7 @@ const EditTransaction = ({ transaction, deleteTransaction, updateText }) => {
                         <span>{transaction.date}</span>
                         <span>{transaction.text}</span>
                         <span>₹{transaction.money}</span>
+                        <span>{transaction.notes}</span>
                     </div>
             
                     <div className="btn-group">
