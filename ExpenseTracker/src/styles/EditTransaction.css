@@ -12,12 +12,11 @@
     transition: transform 0.2s;
 }
 
-.bg-Entertainment { border-left-color: #6f42c1; } 
-.bg-Grocery { border-left-color: #28a745; }       
-.bg-Rent { border-left-color: #007bff; }          
-.bg-Car { border-left-color: #e83e8c; }          
-.bg-Salary { border-left-color: #ffc107; color: #333; }
-.bg-default { border-left-color: #1a1a1a; }
+.bg-Entertainment { background-color: #6f42c1; } 
+.bg-Food { background-color: #28a745; }       
+.bg-Utilities { background-color: #007bff; }          
+.bg-Transport { background-color: #e83e8c; }          
+.bg-Housing { background-color: #ffc107;}
 
 .transaction-item:hover {
     transform: scale(1.01);

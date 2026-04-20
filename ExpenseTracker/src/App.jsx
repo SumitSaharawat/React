@@ -5,6 +5,7 @@ import TransactionDetails from './components/TransactionDetails'
 import BudgetInitialization from './components/BudgetInitialization';
 import BalanceSummary from './components/BalanceSummary';
 import Categories from './components/Categories';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
 function App() {
 
@@ -12,10 +13,10 @@ function App() {
   const [budget, setBudget] = useState(0);
   const [form, setForm] = useState(false);
   const [showInput, setShowInput] = useState(false);
+  const [toggle, setToggle] = useState(true);
 
   const categories = ["Entertainment", "Food", "Utilities", "Transport", "Housing"];
 
-  // Logic for calculations
   const totalExpense = transaction.reduce((acc, item) => acc + item.money, 0);
   const currentBudget = budget - totalExpense;
 
@@ -31,11 +32,16 @@ function App() {
         setTransaction(updatedTransaction);
   };
 
-
+  const toggleTheme = () => setToggle(!toggle);
 
   return (
-    <>
-      <h1>Expense-Tracker</h1>
+    <div className={toggle ? "dark-theme" : ""}>
+      <header>
+        <h1>Expense Tracker</h1>
+        <button onClick={toggleTheme} className="theme-btn">
+          {toggle ? "☀️" : "🌙"}
+        </button>
+      </header>
 
       <BudgetInitialization
         budget={budget}
@@ -70,7 +76,7 @@ function App() {
         updateText={updateText}
         form={form}
         setForm={setForm}/>
-    </>
+    </div>
   )
 }
 

@@ -1,0 +1,63 @@
+/* App.css */
+body {
+  margin: 0;
+  background-color: white; 
+  color: #121212;
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+.dark-theme{
+  margin: 0;
+  background-color: #121212; 
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  overflow: auto;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Base Button Style */
+.theme-btn {
+  padding: 10px 20px;
+  border-radius: 50px; /* Pill shape */
+  border: 2px solid #44E610; /* Your signature green */
+  background: transparent;
+  color: #121212; /* Dark text for light mode */
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease; /* Smooth transition for colors */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.theme-btn:hover {
+  background-color: rgba(68, 230, 16, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(68, 230, 16, 0.2);
+}
+
+/* Dark Mode Overrides */
+.dark-theme .theme-btn {
+  color: #ffffff; /* White text for dark mode */
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.dark-theme .theme-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.dark-theme header {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
