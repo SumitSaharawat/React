@@ -1,10 +1,17 @@
 /* App.css */
-body {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Prevents padding from adding to width/height */
+}
+
+.light-theme{
   margin: 0;
   background-color: white; 
   color: #121212;
   font-family: 'Inter', sans-serif;
   min-height: 100vh;
+  overflow: auto;
   transition: background-color 0.4s ease, color 0.4s ease;
 }
 

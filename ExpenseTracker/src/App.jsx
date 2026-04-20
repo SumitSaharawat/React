@@ -35,7 +35,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className={toggle ? "dark-theme" : ""}>
+      <div className={toggle ? "dark-theme" : "light-theme"}>
         <header className="main-header">
           <h1>Expense-Tracker</h1>
           <nav className="nav-bar">
