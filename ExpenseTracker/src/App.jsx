@@ -13,6 +13,7 @@ function App() {
   const [form, setForm] = useState(false);
   const [showInput, setShowInput] = useState(false);
   const [toggle, setToggle] = useState(true);
+  const [budgetInput, setBudgetInput] = useState(true);
 
   const categories = ["Entertainment", "Food", "Utilities", "Transport", "Housing"];
 
@@ -55,7 +56,9 @@ function App() {
                 <BudgetInitialization 
                   budget={budget} 
                   setBudget={setBudget} 
-                  setForm={setForm}/>
+                  setForm={setForm}
+                  budgetInput={budgetInput}
+                  setBudgetInput={setBudgetInput}/>
                 <BalanceSummary 
                   currentBudget={currentBudget} 
                   totalExpense={totalExpense} 
@@ -93,7 +96,7 @@ function App() {
                   form={form}  />
               </>
             } />
-            
+
           </Routes>
         </div>
       </div>

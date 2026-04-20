@@ -39,7 +39,7 @@ const EditTransaction = ({ transaction, deleteTransaction, updateText }) => {
                 <>
                     <div className="transaction-info">
                         <span>{transaction.text}</span>
-                        <span style={{ color: '#44E610' }}>₹{transaction.money}</span>
+                        <span>₹{transaction.money}</span>
                     </div>
             
                     <div className="btn-group">

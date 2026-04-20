@@ -1,8 +1,6 @@
 import { useState } from "react";
 
-const BudgetInitialization = ({budget, setBudget, setForm}) => {
-
-    const [budgetInput, setBudgetInput] = useState(true);
+const BudgetInitialization = ({budget, setBudget, setForm, budgetInput, setBudgetInput}) => {
 
     const handleForms = () => {
         setBudgetInput(false)

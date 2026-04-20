@@ -2,32 +2,41 @@
 
 /* The main container holding all categories */
 .categories-wrapper {
-  max-width: 600px;
+  max-width: 100%;
   margin: 20px auto;
   display: flex;
   flex-direction: column;
   gap: 20px; /* Adds space between each category card */
 }
 
-/* Individual card for a single category (e.g., Food, Entertainment) */
-.category-group {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  text-align: left; /* Aligns text to the left for better readability */
-}
-
 /* The category heading */
 .category-title {
+  display: flex;                /* 1. Enable Flexbox */
+  justify-content: space-between; /* 2. Push items to far left and right */
+  align-items: center;          /* 3. Keep them vertically centered */
+  
   font-size: 1.25rem;
-  color: #333;
+  color: #ddd;
   margin-top: 0;
   margin-bottom: 15px;
   padding-bottom: 10px;
-  border-bottom: 2px solid #f0f0f0; /* Subtle line separating title from transactions */
   text-transform: capitalize;
+}
+
+/* Specific styling for the total amount */
+.category-total {
+  color: #ddd;
+  font-size: 1.25rem;
+}
+
+/* Update the card background for Dark Theme support */
+.category-group {
+  background-color:#121212;
+  border: 1px solid var(--border-color, #ddd);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  text-align: left;
 }
 
 /* The list container holding the EditTransaction components */
