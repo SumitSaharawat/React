@@ -8,7 +8,7 @@
   border-radius: 12px;
   margin: 20px auto; 
   max-width: 600px;
-  background-color: #fff;
+  background-color: #121212;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
@@ -21,7 +21,7 @@
 .balance-text {
   font-size: 1.1rem;
   font-weight: bold;
-  color: #333;
+  color: #ddd;
 }
 
 /* Kept the button style here so the component is fully independent */

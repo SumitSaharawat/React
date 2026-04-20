@@ -38,6 +38,7 @@ const EditTransaction = ({ transaction, deleteTransaction, updateText }) => {
             ) : (
                 <>
                     <div className="transaction-info">
+                        <span>{transaction.date}</span>
                         <span>{transaction.text}</span>
                         <span>₹{transaction.money}</span>
                     </div>

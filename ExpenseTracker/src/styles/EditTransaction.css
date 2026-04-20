@@ -24,7 +24,7 @@
 
 .transaction-info {
     display: flex;
-    gap: 15px;
+    gap: 300px;
     font-weight: 500;
     color: white;
 }

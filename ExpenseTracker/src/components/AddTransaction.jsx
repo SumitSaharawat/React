@@ -14,6 +14,7 @@ const AddTransaction = ({ transaction, setTransaction, showInput, setShowInput, 
       text: detail,
       id: Date.now(),
       category: category,
+      date: new Date().toISOString().split('T')[0]
     };
 
     setTransaction([...transaction, newTransaction]);
@@ -46,7 +47,7 @@ const AddTransaction = ({ transaction, setTransaction, showInput, setShowInput, 
                             onChange={(e) => setDetail(e.target.value)}
                         />
 
-                        <div style={{ textAlign: 'left', fontSize: "14px", fontWeight: "bold" }}>
+                        <div style={{ textAlign: 'left', fontSize: "14px", fontWeight: "bold", color: "#ddd"}}>
                             Select Category
                         </div>
 
