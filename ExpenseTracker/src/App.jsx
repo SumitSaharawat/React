@@ -6,9 +6,11 @@ import TransactionDetails from './components/TransactionDetails'
 import BudgetInitialization from './components/BudgetInitialization';
 import BalanceSummary from './components/BalanceSummary';
 import Categories from './components/Categories';
+import Goals from './components/Goals/Goal';
 
 function App() {
   const [transaction, setTransaction] = useState([]);
+  const [goals, setGoals] = useState([]);
   const [budget, setBudget] = useState(0);
   const [form, setForm] = useState(false);
   const [showInput, setShowInput] = useState(false);
@@ -95,6 +97,14 @@ function App() {
                   deleteTransaction={deleteTransaction} 
                   updateText={updateText} 
                   form={form}  />
+              </>
+            } />
+
+            <Route path="/goals" element={
+              <>
+                <Goals 
+                  goals={goals}
+                  setGoals={setGoals}/>
               </>
             } />
 

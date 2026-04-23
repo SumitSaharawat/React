@@ -11,9 +11,6 @@ const Categories = ({ transaction, categories, deleteTransaction, updateText, fo
 
                         const expense = filteredTransaction.reduce((acc, item) => acc + item.money,0);
 
-                        // Optional but recommended: Don't show the category if it has 0 transactions
-                        if (filteredTransaction.length === 0) return null;
-
                         return (
                             <div key={category} className="category-group">
                                 <h2 className="category-title">
