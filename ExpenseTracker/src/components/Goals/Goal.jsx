@@ -25,7 +25,7 @@ const Goals = ({goals, setGoals}) => {
     return (
         <div className="goals-container">
             <button 
-                className="btn-primary" 
+                className="btn-goals" 
                 onClick={() => setgoalsForms((prev) => (!prev))}
             >
                 {goalsform ? "Cancel" : "Add New Goal"}
@@ -64,6 +64,7 @@ const Goals = ({goals, setGoals}) => {
                     <div key={goal.id} className="goal-card">
                         <div className="goal-header">
                             <span className="goal-name">{goal.name}</span>
+                            <button>Contribute</button>
                             <span className="goal-amount">₹{goal.amount}</span>
                         </div>
                         <div className="goal-body">
