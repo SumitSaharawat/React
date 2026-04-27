@@ -2,6 +2,7 @@ import { useState } from "react";
 import "../styles/EditTransaction.css"; // Import the new styles
 
 const EditTransaction = ({ transaction, deleteTransaction, updateText }) => {
+
     const [isEditing, setIsEditing] = useState(false);
     const [newText, setNewText] = useState(transaction.text);
 

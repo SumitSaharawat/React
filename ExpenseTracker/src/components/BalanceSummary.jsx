@@ -1,6 +1,10 @@
 import "../styles/BalanceSummary.css";
+import { useTransactions } from "./Context/TransactionContext";
 
-const BalanceSummary = ({ currentBudget, totalExpense, form, showInput, setShowInput }) => {
+const BalanceSummary = () => {
+
+  const { currentBudget, totalExpense, form, showInput, setShowInput } = useTransactions();
+
   return (
     <>
       {form && (

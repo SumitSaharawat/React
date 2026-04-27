@@ -1,7 +1,11 @@
 import { useState } from "react";
+import { useTransactions } from "./Context/TransactionContext";
 import "../styles/AddTransaction.css"
 
-const AddTransaction = ({ transaction, setTransaction, showInput, setShowInput, categories}) => {
+const AddTransaction = () => {
+
+  const { transaction, setTransaction, showInput, setShowInput, categories } = useTransactions();
+
   const [amount, setAmount] = useState("");
   const [detail, setDetail] = useState("");
   const [category, setCategory] = useState("");

@@ -1,10 +1,11 @@
 import { useState } from "react";
 import EditTransaction from "./EditTransaction";
 import "../styles/TransactionDetails.css"; 
+import { useTransactions } from "./Context/TransactionContext";
 
-const TransactionDetails = ({ transaction, deleteTransaction, updateText, form }) => {
+const TransactionDetails = () => {
 
-    
+    const { transaction, deleteTransaction, updateText, form } = useTransactions();
     const [searchInput, setSearchInput] = useState("");
 
 

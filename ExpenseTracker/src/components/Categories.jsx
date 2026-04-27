@@ -1,7 +1,11 @@
 import "../styles/Categories.css"; // Don't forget to import the CSS!
 import EditTransaction from "./EditTransaction";
+import { useTransactions } from "./Context/TransactionContext";
 
-const Categories = ({ transaction, categories, deleteTransaction, updateText, form }) => {
+const Categories = () => {
+
+    const { transaction, categories, deleteTransaction, updateText, form } = useTransactions();
+
     return (
         <>
             {form && (

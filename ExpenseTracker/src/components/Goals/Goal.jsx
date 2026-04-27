@@ -1,8 +1,12 @@
 import { useState } from "react";
 import './styles/Goals.css';
 import GoalItem from "./GoalItem";
+import { useTransactions } from "../Context/TransactionContext";
 
-const Goals = ({ goals, setGoals }) => {
+const Goals = () => {
+
+    const { goals, setGoals } = useTransactions();
+
     const [goalsform, setgoalsForms] = useState(false);
     const [name, setName] = useState("");
     const [amount, setAmount] = useState(""); 

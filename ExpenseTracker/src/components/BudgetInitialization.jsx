@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { useTransactions } from "./Context/TransactionContext";
 
-const BudgetInitialization = ({budget, setBudget, setForm, budgetInput, setBudgetInput}) => {
+const BudgetInitialization = () => {
+
+    const {budget, setBudget, setForm, budgetInput, setBudgetInput} = useTransactions();
 
     const handleForms = () => {
         setBudgetInput(false)
