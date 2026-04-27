@@ -33,7 +33,7 @@ const GoalItem = ({ goal, onUpdateSaved }) => {
             <div className="goal-body">
                 <p className="goal-note">{goal.note}</p>
                 <div className="goal-footer">
-                    <span className="goal-date">Created: {new Date(goal.createdAt).toLocaleDateString()}</span>
+                    <span className="goal-date">{new Date(goal.createdAt).toLocaleDateString()}</span>
                     
                     <div className="add-funds-section">
                         {showInput && (
