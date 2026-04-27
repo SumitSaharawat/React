@@ -1,0 +1,62 @@
+import { useState } from "react";
+
+const GoalItem = ({ goal, onUpdateSaved }) => {
+    // Each goal card now has its own private states
+    const [showInput, setShowInput] = useState(false);
+    const [amountToAdd, setAmountToAdd] = useState("");
+
+    const handleAdd = () => {
+        if (!amountToAdd) return;
+        onUpdateSaved(goal.id, Number(amountToAdd));
+        setAmountToAdd(""); // Clear input
+        setShowInput(false); // Close mini-form
+    };
+
+    const progress = Math.min((goal.saved / goal.amount) * 100, 100).toFixed(0);
+
+    return (
+        <div className="goal-card">
+            <div className="goal-header">
+                <span className="goal-name">{goal.name}</span>
+                <span className="goal-amount">₹{goal.saved} / ₹{goal.amount}</span>
+            </div>
+
+            {/* Progress Bar Container */}
+            <div className="progress-container" style={{ background: '#eee', borderRadius: '10px', height: '12px', margin: '10px 0', overflow: 'hidden' }}>
+                <div 
+                    className="progress-bar-fill" 
+                    style={{ width: `${progress}%`, background: '#44E610', height: '100%', transition: 'width 0.3s ease' }}
+                >
+                </div>
+            </div>
+
+            <div className="goal-body">
+                <p className="goal-note">{goal.note}</p>
+                <div className="goal-footer">
+                    <span className="goal-date">Created: {new Date(goal.createdAt).toLocaleDateString()}</span>
+                    
+                    <div className="add-funds-section">
+                        {showInput && (
+                            <input 
+                                type="number" 
+                                className="mini-input"
+                                placeholder="Amount"
+                                value={amountToAdd}
+                                onChange={(e) => setAmountToAdd(e.target.value)}
+                            />
+                        )}
+                        <button 
+                            className="btn-small" 
+                            onClick={showInput ? handleAdd : () => setShowInput(true)}
+                        >
+                            {showInput ? "Confirm" : "Add Funds"}
+                        </button>
+                        {showInput && <button className="btn-cancel-small" onClick={() => setShowInput(false)}>X</button>}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default GoalItem;
