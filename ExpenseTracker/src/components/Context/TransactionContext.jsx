@@ -10,7 +10,10 @@ export const TransactionProvider = ({ children }) => {
 
   const [showInput, setShowInput] = useState(false);
   const categories = ["Entertainment", "Food", "Utilities", "Transport", "Housing"];
-  const [goals, setGoals] = useState([]);
+  const [goals, setGoals] = useState(() => {
+    const savedGoals = localStorage.getItem("myGoals");
+    return savedGoals ? JSON.parse(savedGoals) : [];
+  });
   
   const [budget, setBudget] = useState(() => {
     const saved = localStorage.getItem("myBudget");
@@ -26,7 +29,8 @@ export const TransactionProvider = ({ children }) => {
         localStorage.setItem("my_transactions", JSON.stringify(transaction));
         localStorage.setItem("myBudgetInput", JSON.stringify(budgetInput))
         localStorage.setItem("myBudget", JSON.stringify(budget))
-    }, [transaction, budgetInput, budget]);
+        localStorage.setItem("myGoals", JSON.stringify(goals))
+    }, [transaction, budgetInput, budget, goals]);
  
   const totalExpense = transaction.reduce((acc, item) => acc + item.money, 0);
   const currentBudget = budget - totalExpense;
