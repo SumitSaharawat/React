@@ -8,35 +8,33 @@ const Categories = () => {
 
     return (
         <>
-            {form && (
-                <div className="categories-wrapper">
-                    {categories.map((category) => {
-                        const filteredTransaction = transaction.filter((item) => item.category === category);
+            <div className="categories-wrapper">
+                {categories.map((category) => {
+                    const filteredTransaction = transaction.filter((item) => item.category === category);
 
-                        const expense = filteredTransaction.reduce((acc, item) => acc + item.money,0);
+                    const expense = filteredTransaction.reduce((acc, item) => acc + item.money,0);
 
-                        return (
-                            <div key={category} className="category-group">
-                                <h2 className="category-title">
-                                    <span>{category}</span>
-                                    <span className="category-total">Total: ₹{expense}</span>
-                                </h2>
-                                
-                                <ul className="category-transaction-list">
-                                    {filteredTransaction.map((item) => (
-                                        <EditTransaction 
-                                            key={item.id} 
-                                            transaction={item} 
-                                            deleteTransaction={deleteTransaction} 
-                                            updateText={updateText}
-                                        />
-                                    ))}
-                                </ul>
-                            </div>
-                        );
-                    })}
-                </div>
-            )}
+                    return (
+                        <div key={category} className="category-group">
+                            <h2 className="category-title">
+                                <span>{category}</span>
+                                <span className="category-total">Total: ₹{expense}</span>
+                            </h2>
+                            
+                            <ul className="category-transaction-list">
+                                {filteredTransaction.map((item) => (
+                                    <EditTransaction 
+                                        key={item.id} 
+                                        transaction={item} 
+                                        deleteTransaction={deleteTransaction} 
+                                        updateText={updateText}
+                                    />
+                                ))}
+                            </ul>
+                        </div>
+                    );
+                })}
+            </div>
         </>
     );
 };

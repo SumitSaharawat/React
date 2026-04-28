@@ -4,19 +4,25 @@
     align-items: center;
     padding: 12px 20px;
     margin-bottom: 8px;
-    background-color: #1a1a1a;
-    border-left: 10px solid transparent;
-    color: white;
+    /* Change background to white */
+    background-color: #ffffff; 
+    /* Set a default border style */
+    border-left: 10px solid #ddd; 
+    /* Change text to dark so it's readable on white */
+    color: #333; 
     border-radius: 8px;
     list-style: none;
     transition: transform 0.2s;
+    /* Optional: add a subtle shadow to make it pop on white backgrounds */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.bg-Entertainment { background-color: #6f42c1; } 
-.bg-Food { background-color: #28a745; }       
-.bg-Utilities { background-color: #007bff; }          
-.bg-Transport { background-color: #e83e8c; }          
-.bg-Housing { background-color: #ffc107;}
+/* Update category classes to change border color only */
+.bg-Entertainment { border-left-color: #6f42c1; } 
+.bg-Food { border-left-color: #28a745; }       
+.bg-Utilities { border-left-color: #007bff; }          
+.bg-Transport { border-left-color: #e83e8c; }          
+.bg-Housing { border-left-color: #ffc107; }
 
 .transaction-item:hover {
     transform: scale(1.01);
@@ -26,7 +32,7 @@
     display: flex;
     gap: 100px;
     font-weight: 500;
-    color: white;
+    color: #333;
 }
 
 .edit-input {

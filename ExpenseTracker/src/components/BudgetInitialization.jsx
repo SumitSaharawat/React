@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useTransactions } from "./Context/TransactionContext";
+import '../styles/BalanceSummary.css';
 
 const BudgetInitialization = () => {
 
-    const {budget, setBudget, setForm, budgetInput, setBudgetInput} = useTransactions();
+    const {budget, setBudget, setForm, budgetInput, setBudgetInput, currentBudget, totalExpense, showInput, setShowInput} = useTransactions();
 
     const handleForms = () => {
         setBudgetInput(false)
@@ -11,7 +12,7 @@ const BudgetInitialization = () => {
     }
     return(
         <>
-            {budgetInput && (
+            {budgetInput ? (
                 <div className="budget-setup-container">
                     <h2 className="budget-setup-title">Welcome! Set your Monthly Budget</h2>
                     
@@ -32,6 +33,19 @@ const BudgetInitialization = () => {
                     >
                         Save & Start Tracking
                     </button>
+                </div>
+            ) : (
+                <div className="summary-container">
+                    <div className="balance-row">
+                        <span className="balance-text">Budget: ₹{currentBudget}</span>
+                        <span className="balance-text">Expense: ₹{totalExpense}</span>
+                        <button 
+                        className="btn-summary" 
+                        onClick={() => setShowInput(!showInput)}
+                        >
+                        {showInput ? "Cancel" : "Add"}
+                        </button>
+                    </div>
                 </div>
             )}
         </>

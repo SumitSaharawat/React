@@ -4,7 +4,6 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import AddTransaction from './components/AddTransaction'
 import TransactionDetails from './components/TransactionDetails'
 import BudgetInitialization from './components/BudgetInitialization';
-import BalanceSummary from './components/BalanceSummary';
 import Categories from './components/Categories';
 import Goals from './components/Goals/Goal';
 import { TransactionProvider } from './components/Context/TransactionContext';
@@ -35,7 +34,6 @@ function App() {
               <Route path="/" element={
                 <>
                   <BudgetInitialization/>
-                  <BalanceSummary/>
                   <AddTransaction />
                 </>
               } />
