@@ -24,13 +24,6 @@ export const TransactionProvider = ({ children }) => {
     const savedBudgetInput = localStorage.getItem("myBudgetInput");
     return savedBudgetInput !== null ? JSON.parse(savedBudgetInput) : true;
   });
-
-  useEffect(() => {
-        localStorage.setItem("my_transactions", JSON.stringify(transaction));
-        localStorage.setItem("myBudgetInput", JSON.stringify(budgetInput))
-        localStorage.setItem("myBudget", JSON.stringify(budget))
-        localStorage.setItem("myGoals", JSON.stringify(goals))
-    }, [transaction, budgetInput, budget, goals]);
  
   const totalExpense = transaction.reduce((acc, item) => acc + item.money, 0);
   const currentBudget = budget - totalExpense;
@@ -45,6 +38,33 @@ export const TransactionProvider = ({ children }) => {
         ));
   };
 
+  const seedMockData = () => {
+    const mockData = [];
+    const categories = ["Entertainment", "Food", "Utilities", "Transport", "Housing"];
+    
+    for (let i = 0; i < 100; i++) {
+        mockData.push({
+            money: Math.floor(Math.random() * 1000) + 50,
+            text: `Mock Transaction ${i + 1}`,
+            id: Date.now() + i, // Unique ID
+            category: categories[Math.floor(Math.random() * categories.length)],
+            notes: "Testing 100 items",
+            date: new Date().toISOString().split('T')[0]
+        });
+    }
+    
+    // This updates your state AND your LocalStorage automatically via your useEffect
+    setTransaction(prev => [...prev, ...mockData]);
+    alert("100 Transactions added!");
+};
+
+useEffect(() => {
+        localStorage.setItem("my_transactions", JSON.stringify(transaction));
+        localStorage.setItem("myBudgetInput", JSON.stringify(budgetInput));
+        localStorage.setItem("myBudget", JSON.stringify(budget));
+        localStorage.setItem("myGoals", JSON.stringify(goals));
+    }, [transaction, budgetInput, budget, goals]);
+
 
   return (
     <TransactionContext.Provider value={{ 
@@ -57,7 +77,8 @@ export const TransactionProvider = ({ children }) => {
         totalExpense,
         currentBudget,
         deleteTransaction,
-        updateText
+        updateText,
+        seedMockData
     }}>
       {children}
     </TransactionContext.Provider>
