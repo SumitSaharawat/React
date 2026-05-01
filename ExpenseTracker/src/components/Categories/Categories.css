@@ -48,3 +48,28 @@
   flex-direction: column;
   gap: 10px; /* Space between individual transactions */
 }
+
+/* Container for View More / View Less buttons */
+.view-buttons-container {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  justify-content: center;
+}
+
+/* Styling for View More / View Less buttons */
+.view-btn {
+  background-color: #44E610;
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  border: 2px solid black;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.view-btn:hover {
+  opacity: 0.9;
+}

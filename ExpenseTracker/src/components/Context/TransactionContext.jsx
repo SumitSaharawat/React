@@ -26,7 +26,13 @@ export const TransactionProvider = ({ children }) => {
   });
  
   const totalExpense = transaction.reduce((acc, item) => acc + item.money, 0);
-  const currentBudget = budget - totalExpense;
+  const currentBudget = (budget - totalExpense <= 0) ? 0 : (budget - totalExpense);
+
+  useEffect(() => {
+    if (budget > 0 && totalExpense >= budget) {
+      alert('No Budget Left!');
+    }
+  }, [totalExpense, budget]);
 
   const deleteTransaction = (idToDelete) => {
         setTransaction(transaction.filter((item) => item.id !== idToDelete));

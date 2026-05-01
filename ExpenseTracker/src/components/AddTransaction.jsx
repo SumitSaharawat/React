@@ -4,7 +4,7 @@ import "../styles/AddTransaction.css"
 
 const AddTransaction = () => {
 
-  const { transaction, setTransaction, showInput, setShowInput, categories } = useTransactions();
+  const { transaction, setTransaction, showInput, setShowInput, categories, budget, totalExpense } = useTransactions();
 
   const [amount, setAmount] = useState("");
   const [detail, setDetail] = useState("");
@@ -77,9 +77,10 @@ const AddTransaction = () => {
                             ))}
                         </div>
 
-                        <button className="btn-primary full-width" onClick={handleTransaction}>
+                        {(totalExpense < budget) ? (
+                            <button className="btn-primary full-width" onClick={handleTransaction}>
                             Add Transaction
-                        </button>
+                        </button>) : ("Not Enough Funds !!!")}
                     </div>
                 </div>
             )}

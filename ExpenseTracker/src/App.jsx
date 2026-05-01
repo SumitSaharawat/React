@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import AddTransaction from './components/AddTransaction'
 import TransactionDetails from './components/TransactionDetails'
 import BudgetInitialization from './components/BudgetInitialization';
-import Categories from './components/Categories';
+import Categories from './components/Categories/Categories';
 import Goals from './components/Goals/Goal';
 import { TransactionProvider } from './components/Context/TransactionContext';
 
