@@ -8,11 +8,14 @@ const TransactionDetails = () => {
     const { transaction, deleteTransaction, updateText, form } = useTransactions();
     const [searchInput, setSearchInput] = useState("");
     const [selected, setSelected] = useState("");
+    const [filter, setFilter] = useState("");
 
 
     const filteredTransaction = transaction
-        .filter((item) => item.text.toLowerCase().includes(searchInput.toLowerCase()))
-        .sort((a, b) => {
+        .filter((item) => item.text.toLowerCase().includes(searchInput.toLowerCase())).filter((item) => {
+            if (filter === "") return true;
+            return item.category.toLowerCase() === filter.toLowerCase();
+        }).sort((a, b) => {
             if (selected === "highToLow") return b.money - a.money;
             if (selected === "lowTohigh") return a.money - b.money;
             // Date Logic: Newest to Oldest
@@ -30,7 +33,10 @@ const TransactionDetails = () => {
         <>
             
             <div className="details-container">
-                <h2 className="details-heading">Transactions</h2>
+                <div className="details-header-row">
+                    <h2 className="details-heading">Transactions</h2>
+                    <h3 className="transactions-count">{filteredTransaction.length} of {transaction.length} Transactions</h3>
+                </div>
 
                 <div className="controls-row">
                     <div className="search-wrapper">
@@ -52,6 +58,16 @@ const TransactionDetails = () => {
                             </svg>
                         </button>
                     </div>
+
+                    <select className="sort-select" value={filter} onChange={(e) => setFilter(e.target.value)}>
+                        <option value="" disabled>Select a Category</option>
+                        <option value="entertainment">Entertainment</option>
+                        <option value="housing">Housing</option>
+                        <option value="utilities">Utilities</option>
+                        <option value="transport">Transport</option>
+                        <option value="food">Food</option>
+                        <option value="other">Other</option>
+                    </select>
 
                     <select className="sort-select" value={selected} onChange={(e) => setSelected(e.target.value)}>
                         <option value="" disabled>Select an option</option>

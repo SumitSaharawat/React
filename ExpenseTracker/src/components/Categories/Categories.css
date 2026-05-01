@@ -59,17 +59,19 @@
 
 /* Styling for View More / View Less buttons */
 .view-btn {
-  background-color: #44E610;
-  color: black;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
+  background-color: #333;
+    color: #ddd;
+    border: 1px solid #444;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
 .view-btn:hover {
-  background-color: #3bcf0d;
-  transform: translateY(-2px);
+ background-color: #44E610;
+  border-color: #44E610;
+  color: black;
 }

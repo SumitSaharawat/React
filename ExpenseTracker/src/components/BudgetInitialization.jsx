@@ -8,6 +8,19 @@ const BudgetInitialization = () => {
            totalExpense, showInput, setShowInput, transaction, 
            getPastSevenDaysTotal, getPastMonthTotal, getCategoryTotal } = useTransactions();
 
+    const percentage = (currentBudget / budget) * 100;
+    const handleWarning = () => {
+        if(percentage < 50){
+            return "danger";
+        }
+        else if(percentage < 75){
+            return "warning";
+        }
+        else{
+            return "success";
+        }
+    }
+
 
     const handleForms = () => {
         setBudgetInput(false)
@@ -41,16 +54,19 @@ const BudgetInitialization = () => {
                 <>
                     <div className="summary-container">
                         <div className="balance-row">
-                            <span className="balance-text">Budget: ₹{currentBudget}</span>
+                            <span className="balance-text">
+                                Budget: ₹<span className={`text-${handleWarning()}`}>{currentBudget}</span>
+                            </span>
                             <span className="balance-text">Expense: ₹{totalExpense}</span>
-                            <button 
+                        </div>
+                        <button 
                             className="btn-summary" 
                             onClick={() => setShowInput(!showInput)}
-                            >
-                            {showInput ? "Cancel" : "Add"}
-                            </button>
-                        </div>
+                        >
+                            {showInput ? "Cancel" : "Add Transaction"}
+                        </button>
                     </div>
+                    {!showInput && (
                     <div className="stats-container">
                         <div className="stat-card">
                             <span className="stat-title">Weekly Spendings</span>
@@ -80,7 +96,7 @@ const BudgetInitialization = () => {
                             <span className="stat-title">Other Spendings</span>
                             <span className="stat-value">₹{getCategoryTotal("Other")}</span>
                         </div>
-                    </div>
+                    </div>)}
                 </>
             )}
         </>

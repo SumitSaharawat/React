@@ -9,10 +9,24 @@
     color: #ddd;
 }
 
+.details-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
 .details-heading {
     font-size: 25px;
     font-weight: 600;
-    margin-bottom: 15px;
+    margin: 0;
+}
+
+.transactions-count {
+    font-size: 14px;
+    color: #aaa;
+    font-weight: 500;
+    margin: 0;
 }
 
 /* 1. The Boundary Box */
@@ -21,7 +35,6 @@
     flex: 1;
     width: 100%; 
     max-width: 400px;
-    margin-bottom: 20px;
 }
 
 /* 2. The Input Field */

@@ -15,14 +15,25 @@
 
 .balance-row {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
+  margin-bottom: 20px;
 }
 
 .balance-text {
   font-size: 1.1rem;
   font-weight: bold;
   color: #ddd;
+}
+
+.text-danger {
+  color: #dc3545;
+}
+.text-warning {
+  color: #fd7e14;
+}
+.text-success {
+  color: #28a745;
 }
 
 /* Kept the button style here so the component is fully independent */
