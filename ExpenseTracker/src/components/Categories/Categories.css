@@ -2,7 +2,7 @@
 
 /* The main container holding all categories */
 .categories-wrapper {
-  max-width: 100%;
+  max-width: 1000px;
   margin: 20px auto;
   display: flex;
   flex-direction: column;

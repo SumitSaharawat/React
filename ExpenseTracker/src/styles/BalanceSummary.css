@@ -46,14 +46,15 @@
 
 .stats-container {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
   margin: 0 auto 20px auto;
-  max-width: 600px;
+  max-width: 800px;
 }
 
 .stat-card {
-  flex: 1;
+  flex: 1 1 200px;
   background-color: #121212;
   border: 1px solid #333;
   border-radius: 12px;
