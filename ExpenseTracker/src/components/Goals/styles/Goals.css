@@ -18,11 +18,11 @@
     background-color: #44E610;
     color: black;
     padding: 10px 20px;
-    border: 2px solid black;
-    border-radius: 6px;
+    border: none;
+    border-radius: 8px;
     font-weight: 600;
     cursor: pointer;
-    transition: opacity 0.2s;
+    transition: all 0.2s ease;
 }
 
 .btn-goals {
@@ -30,7 +30,8 @@
 }
 
 .btn-goals:hover, .btn-primary:hover {
-    opacity: 0.9;
+    background-color: #3bcf0d;
+    transform: translateY(-2px);
 }
 
 .full-width {
@@ -40,12 +41,12 @@
 
 /* 3. Goal Creation Form */
 .goal-form-container {
-    background-color: #fff;
-    border: 1px solid #ddd;
+    background-color: #121212;
+    border: 1px solid #333;
     border-radius: 12px;
     padding: 20px;
     margin-bottom: 30px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     width: 100%;
     max-width: 400px; /* Keeps the form size manageable */
 }
@@ -55,7 +56,9 @@
     padding: 12px;
     margin-bottom: 15px;
     border-radius: 8px;
-    border: 1px solid #ddd;
+    border: 1px solid #444;
+    background-color: #1f1f1f;
+    color: #ddd;
     box-sizing: border-box;
     outline: none;
 }
@@ -78,14 +81,15 @@
 /* 5. Individual Goal Card 
    Set to 400px as requested. */
 .goal-card {
-    background-color: #fff;
+    background-color: #1f1f1f;;
+    color: #ddd;
     width: 400px;
-    border: 1px solid #ddd;
+    border: 1px solid #333;
     border-left: 5px solid #44E610;
-    border-radius: 10px;
+    border-radius: 12px;
     padding: 20px;
     transition: transform 0.2s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
 }
@@ -105,7 +109,7 @@
 .goal-name {
     font-size: 1.15rem;
     font-weight: bold;
-    color: #333;
+    color: #ddd;
 }
 
 .goal-amount {
@@ -115,7 +119,7 @@
 }
 
 .progress-container {
-    background: #f0f0f0;
+    background: #333;
     height: 12px;
     border-radius: 6px;
     margin: 10px 0;
@@ -138,7 +142,7 @@
 
 .goal-note {
     font-size: 0.9rem;
-    color: #666;
+    color: #aaa;
     margin: 0;
     line-height: 1.4;
 }
@@ -149,7 +153,7 @@
     align-items: center;
     margin-top: 15px;
     padding-top: 10px;
-    border-top: 1px solid #f9f9f9;
+    border-top: 1px solid #333;
 }
 
 .goal-date {
@@ -168,20 +172,34 @@
 .mini-input {
     width: 70px;
     padding: 6px;
-    border: 1px solid #ddd;
+    border: 1px solid #444;
+    background-color: #1f1f1f;
+    color: #ddd;
     border-radius: 4px;
     font-size: 0.85rem;
+    outline: none;
+}
+
+.mini-input:focus {
+    border-color: #44E610;
 }
 
 .btn-small {
-    background-color: #000;
-    color: #fff;
-    border: none;
+    background-color: #333;
+    color: #ddd;
+    border: 1px solid #444;
     padding: 6px 12px;
     border-radius: 4px;
     font-size: 0.8rem;
     font-weight: 600;
     cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-small:hover {
+    background-color: #44E610;
+    border-color: #44E610;
+    color: black;
 }
 
 .btn-cancel-small {

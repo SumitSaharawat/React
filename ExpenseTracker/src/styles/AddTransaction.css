@@ -1,13 +1,13 @@
 /* Container for the overall component */
 .transaction-container {
   text-align: center;
-  border: 1px solid #ddd;
+  border: 1px solid #333;
   padding: 20px;
   border-radius: 12px;
   margin: 20px auto;
   max-width: 600px;
   background-color: #121212;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* Container for the Initial Budget Setup */
@@ -17,16 +17,17 @@
   align-items: center;
   gap: 15px;
   padding: 30px;
-  background-color: #44E610;
-  border-radius: 10px;
-  border: 2px solid#44E610; /* Dashed border suggests 'setup' mode */
-  margin-bottom: 20px;
+  background-color: #121212;
+  border-radius: 12px;
+  border: 2px dashed #44E610; /* Dashed border suggests 'setup' mode */
+  margin: 20px auto;
+  max-width: 600px;
 }
 
 .budget-setup-title {
   font-size: 1.2rem;
   font-weight: 600;
-  color: #02295a;
+  color: #ddd;
   margin: 0;
 }
 
@@ -37,8 +38,10 @@
   padding: 15px;
   font-size: 1.2rem;
   text-align: center;
-  border: 1px solid #ddd;
+  border: 1px solid #444;
   border-radius: 8px;
+  background-color: #1f1f1f;
+  color: #ddd;
   outline: none;
   transition: border-color 0.2s;
 }
@@ -59,7 +62,7 @@
 .balance-text {
   font-size: 1.1rem;
   font-weight: bold;
-  color: #333;
+  color: #ddd;
 }
 
 /* Common button styling */
@@ -68,15 +71,15 @@
   color: black;
   padding: 10px 20px;
   border: none;
-  border-radius: 6px;
-  border: 2px solid black;
+  border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
-  transition: opacity 0.2s;
+  transition: all 0.2s ease;
 }
 
 .btn-primary:hover {
-  opacity: 0.9;
+  background-color: #3bcf0d;
+  transform: translateY(-2px);
 }
 
 /* Form Styling */
@@ -85,8 +88,10 @@
   padding: 12px;
   margin-bottom: 15px;
   border-radius: 8px;
-  border: 1px solid #ddd;
+  border: 1px solid #444;
   box-sizing: border-box; /* Prevents overflow */
+  background-color: #1f1f1f;
+  color: #ddd;
   outline: none;
 }
 
@@ -105,19 +110,18 @@
 .chip {
   padding: 8px 18px;
   border-radius: 20px;
-  border: 1px solid #ddd;
-  background-color: #fff;
-  color: #666;
+  border: 1px solid #444;
+  background-color: #1f1f1f;
+  color: #aaa;
   cursor: pointer;
   font-size: 14px;
   transition: all 0.2s ease;
 }
 
-/* This class is applied conditionally via React */
 .chip.active {
   border-color: #44E610;
-  background-color: #f0fff0;
-  color: #2d8a0a;
+  background-color: rgba(68, 230, 16, 0.1);
+  color: #44E610;
   font-weight: bold;
 }
 

@@ -4,7 +4,10 @@ import '../styles/BalanceSummary.css';
 
 const BudgetInitialization = () => {
 
-    const {budget, setBudget, setForm, budgetInput, setBudgetInput, currentBudget, totalExpense, showInput, setShowInput} = useTransactions();
+    const {budget, setBudget, setForm, budgetInput, setBudgetInput, currentBudget, 
+           totalExpense, showInput, setShowInput, transaction, 
+           getPastSevenDaysTotal, getPastMonthTotal } = useTransactions();
+
 
     const handleForms = () => {
         setBudgetInput(false)
@@ -35,18 +38,30 @@ const BudgetInitialization = () => {
                     </button>
                 </div>
             ) : (
-                <div className="summary-container">
-                    <div className="balance-row">
-                        <span className="balance-text">Budget: ₹{currentBudget}</span>
-                        <span className="balance-text">Expense: ₹{totalExpense}</span>
-                        <button 
-                        className="btn-summary" 
-                        onClick={() => setShowInput(!showInput)}
-                        >
-                        {showInput ? "Cancel" : "Add"}
-                        </button>
+                <>
+                    <div className="summary-container">
+                        <div className="balance-row">
+                            <span className="balance-text">Budget: ₹{currentBudget}</span>
+                            <span className="balance-text">Expense: ₹{totalExpense}</span>
+                            <button 
+                            className="btn-summary" 
+                            onClick={() => setShowInput(!showInput)}
+                            >
+                            {showInput ? "Cancel" : "Add"}
+                            </button>
+                        </div>
                     </div>
-                </div>
+                    <div className="stats-container">
+                        <div className="stat-card">
+                            <span className="stat-title">Weekly Spendings</span>
+                            <span className="stat-value">₹{getPastSevenDaysTotal}</span>
+                        </div>
+                        <div className="stat-card">
+                            <span className="stat-title">Monthly Spendings</span>
+                            <span className="stat-value">₹{getPastMonthTotal(transaction)}</span>
+                        </div>
+                    </div>
+                </>
             )}
         </>
     )

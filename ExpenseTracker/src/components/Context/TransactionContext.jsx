@@ -64,6 +64,28 @@ export const TransactionProvider = ({ children }) => {
     alert("100 Transactions added!");
 };
 
+const getPastSevenDaysTotal = transaction
+    .filter(item => {
+        const sevenDaysAgo = new Date();
+        sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+        sevenDaysAgo.setHours(0, 0, 0, 0);
+        return new Date(item.date) >= sevenDaysAgo;
+    })
+    .reduce((acc, item) => acc + item.money, 0);
+
+const getPastMonthTotal = (transaction) => {
+    const oneMonthAgo = new Date();
+    oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+    oneMonthAgo.setDate(1);
+    oneMonthAgo.setHours(0, 0, 0, 0); 
+
+    const oneMonthTransactions = transaction.filter(item => {
+        return new Date(item.date) >= oneMonthAgo;
+    })
+
+    return oneMonthTransactions.reduce((acc, item) => acc + item.money, 0);
+}
+
 useEffect(() => {
         localStorage.setItem("my_transactions", JSON.stringify(transaction));
         localStorage.setItem("myBudgetInput", JSON.stringify(budgetInput));
@@ -84,7 +106,9 @@ useEffect(() => {
         currentBudget,
         deleteTransaction,
         updateText,
-        seedMockData
+        seedMockData,
+        getPastSevenDaysTotal,
+        getPastMonthTotal
     }}>
       {children}
     </TransactionContext.Provider>
