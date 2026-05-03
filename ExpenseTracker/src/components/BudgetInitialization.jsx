@@ -75,12 +75,12 @@ const BudgetInitialization = () => {
                             <span className="stat-title">Weekly Spendings</span>
                             <span className="stat-value">₹{getPastSevenDaysTotal}</span>
                         </div>
+                        <CategoryChart />
                         <div className="stat-card">
                             <span className="stat-title">Monthly Spendings</span>
                             <span className="stat-value">₹{getPastMonthTotal(transaction)}</span>
                         </div>
                     </div>
-                    <CategoryChart />
                     </>)}
                 </>
             )}
