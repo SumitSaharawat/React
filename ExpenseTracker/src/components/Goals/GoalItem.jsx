@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { FaTrash } from "react-icons/fa";
 
-const GoalItem = ({ goal, onUpdateSaved }) => {
+const GoalItem = ({ goal, onUpdateSaved, deleteGoal }) => {
     // Each goal card now has its own private states
     const [showInput, setShowInput] = useState(false);
     const [amountToAdd, setAmountToAdd] = useState("");
@@ -34,6 +35,9 @@ const GoalItem = ({ goal, onUpdateSaved }) => {
                 <p className="goal-note">{goal.note}</p>
                 <div className="goal-footer">
                     <span className="goal-date">{new Date(goal.createdAt).toLocaleDateString()}</span>
+                    <button className="btn-delete" onClick={() => deleteGoal(goal.id)} title="Delete Goal">
+                        <FaTrash />
+                    </button>
                     
                     <div className="add-funds-section">
                         {showInput && (
@@ -45,12 +49,13 @@ const GoalItem = ({ goal, onUpdateSaved }) => {
                                 onChange={(e) => setAmountToAdd(e.target.value)}
                             />
                         )}
+                        {goal.saved < goal.amount ? 
                         <button 
                             className="btn-small" 
                             onClick={showInput ? handleAdd : () => setShowInput(true)}
                         >
                             {showInput ? "Confirm" : "Add Funds"}
-                        </button>
+                        </button> : <span>Goal Reached!</span>}
                         {showInput && <button className="btn-cancel-small" onClick={() => setShowInput(false)}>X</button>}
                     </div>
                 </div>

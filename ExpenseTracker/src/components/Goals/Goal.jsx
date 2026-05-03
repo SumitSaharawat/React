@@ -30,10 +30,20 @@ const Goals = () => {
 
     // This function targets a specific goal by ID and updates its saved total
     const updateGoalAmount = (id, money) => {
-        const updated = goals.map(g => 
+        const goalToUpdate = goals.find(g => g.id === id);
+        
+        if (goalToUpdate && (goalToUpdate.saved + money > goalToUpdate.amount)) {
+            alert("Funds larger than goal amount!");
+            return; // Exit early, do not update the state
+        }
+
+        setGoals(prevGoals => prevGoals.map(g => 
             g.id === id ? { ...g, saved: Number(g.saved) + money } : g
-        );
-        setGoals(updated);
+        ));
+    };
+
+    const deleteGoal = (id) => {
+        setGoals(goals.filter(g => g.id !== id));
     };
 
     return (
@@ -52,11 +62,12 @@ const Goals = () => {
             )}
 
             <div className="goal-list">
-                {goals.map((goal) => (
+                {goals.map((goal, index) => (
                     <GoalItem 
-                        key={goal.id} 
+                        key={goal.id || index} 
                         goal={goal} 
                         onUpdateSaved={updateGoalAmount} 
+                        deleteGoal={deleteGoal}
                     />
                 ))}
             </div>

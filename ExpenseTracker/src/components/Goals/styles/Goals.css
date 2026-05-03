@@ -162,6 +162,26 @@
     font-style: italic;
 }
 
+/* Delete Button (Garbage Icon) */
+.btn-delete {
+    background: none;
+    color: #ff4d4d; /* Matches the cancel button red */
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-delete:hover {
+    background-color: rgba(255, 77, 77, 0.15);
+    transform: translateY(-2px);
+}
+
 /* 8. Add Funds Mini-Form */
 .add-funds-section {
     display: flex;
