@@ -5,9 +5,19 @@ const GoalItem = ({ goal, onUpdateSaved, deleteGoal }) => {
     // Each goal card now has its own private states
     const [showInput, setShowInput] = useState(false);
     const [amountToAdd, setAmountToAdd] = useState("");
+    const [error, setError] = useState("");
 
     const handleAdd = () => {
         if (!amountToAdd) return;
+
+        // Validate before updating
+        if (goal.saved + Number(amountToAdd) > goal.amount) {
+            setError("Amount exceeds goal amount");
+            setTimeout(() => setError(""), 3000);
+            return;
+        }
+
+        setError(""); // Clear any previous errors
         onUpdateSaved(goal.id, Number(amountToAdd));
         setAmountToAdd(""); // Clear input
         setShowInput(false); // Close mini-form
@@ -46,7 +56,10 @@ const GoalItem = ({ goal, onUpdateSaved, deleteGoal }) => {
                                 className="mini-input"
                                 placeholder="Amount"
                                 value={amountToAdd}
-                                onChange={(e) => setAmountToAdd(e.target.value)}
+                                onChange={(e) => {
+                                    setAmountToAdd(e.target.value);
+                                    setError(""); // Clear error when user types
+                                }}
                             />
                         )}
                         {goal.saved < goal.amount ? 
@@ -59,6 +72,7 @@ const GoalItem = ({ goal, onUpdateSaved, deleteGoal }) => {
                         {showInput && <button className="btn-cancel-small" onClick={() => setShowInput(false)}>X</button>}
                     </div>
                 </div>
+                {error && <span className="goal-error">{error}</span>}
             </div>
         </div>
     );

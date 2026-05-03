@@ -76,6 +76,7 @@
     gap: 20px;
     width: 100%;
     justify-content: flex-start;
+    align-items: flex-start;
 }
 
 /* 5. Individual Goal Card 
@@ -92,6 +93,7 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .goal-card:hover {
@@ -228,4 +230,15 @@
     border: none;
     font-weight: bold;
     cursor: pointer;
+}
+
+.goal-error {
+    position: absolute;
+    bottom: 5px;
+    right: 20px;
+    color: #ff4d4d;
+    font-weight: bold;
+    margin: 0;
+    font-size: 0.8rem;
+    text-align: right;
 }

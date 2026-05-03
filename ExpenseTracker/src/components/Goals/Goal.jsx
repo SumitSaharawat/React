@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { use, useState } from "react";
 import './styles/Goals.css';
 import GoalItem from "./GoalItem";
 import { useTransactions } from "../Context/TransactionContext";
@@ -11,6 +11,7 @@ const Goals = () => {
     const [name, setName] = useState("");
     const [amount, setAmount] = useState(""); 
     const [note, setNote] = useState("");
+
 
     const handleGoals = () => {
         if (!name || !amount) return;
@@ -33,7 +34,6 @@ const Goals = () => {
         const goalToUpdate = goals.find(g => g.id === id);
         
         if (goalToUpdate && (goalToUpdate.saved + money > goalToUpdate.amount)) {
-            alert("Funds larger than goal amount!");
             return; // Exit early, do not update the state
         }
 
@@ -54,7 +54,11 @@ const Goals = () => {
 
             {goalsform && (
                 <div className="goal-form-container">
-                    <input className="input-field" type="number" placeholder="Target Amount" value={amount} onChange={(e) => setAmount(e.target.value)} />
+                    <input className="input-field" 
+                        type="number" 
+                        placeholder="Target Amount" 
+                        value={amount} 
+                        onChange={(e) => setAmount(e.target.value)} />
                     <input className="input-field" type="text" placeholder="Goal Name" value={name} onChange={(e) => setName(e.target.value)} />
                     <textarea className="input-field" placeholder="Notes..." value={note} onChange={(e) => setNote(e.target.value)} />
                     <button className="btn-primary full-width" onClick={handleGoals}>Create Goal</button>
