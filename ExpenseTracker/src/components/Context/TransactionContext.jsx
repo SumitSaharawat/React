@@ -34,15 +34,8 @@ export const TransactionProvider = ({ children }) => {
   });
  
   // Derived state: Calculate total expense and remaining budget based on current transactions
-  const totalExpense = transaction.reduce((acc, item) => acc + item.money, 0);
+  const totalExpense = transaction.reduce((acc, item) => acc + item.money , 0);
   const currentBudget = (budget - totalExpense <= 0) ? 0 : (budget - totalExpense);
-
-  // Monitor total expenses and alert the user if they run out of budget
-  useEffect(() => {
-    if (budget > 0 && totalExpense >= budget) {
-      alert('No Budget Left!');
-    }
-  }, [totalExpense, budget]);
 
   // Helper to remove a transaction by its unique ID
   const deleteTransaction = (idToDelete) => {

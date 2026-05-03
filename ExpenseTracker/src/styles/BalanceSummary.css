@@ -90,3 +90,11 @@
   font-size: 1.5rem;
   font-weight: bold;
 }
+
+.error-message {
+  display: block;
+  color: #ff4d4d; /* Matches the red danger/cancel theme */
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 20px;
+}

@@ -10,9 +10,19 @@ const AddTransaction = () => {
   const [detail, setDetail] = useState("");
   const [category, setCategory] = useState("");
   const [notes, setNotes] = useState("");
+  const [error, setError] = useState("");
 
   const handleTransaction = () => {
-    if (!amount || !category) return; 
+    setError(""); // Clear any previous errors
+
+    if (!amount || !category) {
+        setError("Please enter an amount and select a category.");
+        return; 
+    }
+    if (totalExpense + Number(amount) > budget) {
+        setError("Not Enough Funds! Transaction exceeds your budget.");
+        return;
+    }
 
     const newTransaction = {
       money: Number(amount),
@@ -29,6 +39,7 @@ const AddTransaction = () => {
     setAmount("");
     setDetail("");
     setCategory("");
+    setError("");
     setShowInput(false);
   };
 
@@ -42,7 +53,10 @@ const AddTransaction = () => {
                             type="number"
                             placeholder="Enter Amount"
                             value={amount}
-                            onChange={(e) => setAmount(e.target.value)}
+                            onChange={(e) => {
+                                setAmount(e.target.value);
+                                setError(""); // Clear error when user types
+                            }}
                         />
 
                         <input
@@ -77,10 +91,14 @@ const AddTransaction = () => {
                             ))}
                         </div>
 
-                        {(totalExpense < budget) ? (
-                            <button className="btn-primary full-width" onClick={handleTransaction}>
+                        {error && (
+                            <div style={{ color: '#ff4d4d', marginBottom: '15px', fontWeight: 'bold', fontSize: '0.9rem' }}>
+                                {error}
+                            </div>
+                        )}
+                        <button className="btn-primary full-width" onClick={handleTransaction}>
                             Add Transaction
-                        </button>) : ("Not Enough Funds !!!")}
+                        </button>
                     </div>
                 </div>
             )}

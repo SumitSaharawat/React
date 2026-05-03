@@ -59,13 +59,14 @@ const BudgetInitialization = () => {
                             </span>
                             <span className="balance-text">Expense: ₹{totalExpense}</span>
                         </div>
-                        <button 
+                        {currentBudget === 0 ? <span className="error-message">No Budget Left!</span> :
+                            <button 
                             className="btn-summary" 
                             onClick={() => setShowInput(!showInput)}
-                        >
+                            >
                             {showInput ? "Cancel" : "Add Transaction"}
-                        </button>
-                    </div>
+                            </button>}
+                        </div>
                     {!showInput && (
                     <div className="stats-container">
                         <div className="stat-card">
