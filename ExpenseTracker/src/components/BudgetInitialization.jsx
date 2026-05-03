@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useTransactions } from "./Context/TransactionContext";
 import '../styles/BalanceSummary.css';
+import CategoryChart from "./CategoryChart";
 
 const BudgetInitialization = () => {
 
@@ -68,6 +69,7 @@ const BudgetInitialization = () => {
                             </button>}
                         </div>
                     {!showInput && (
+                    <>
                     <div className="stats-container">
                         <div className="stat-card">
                             <span className="stat-title">Weekly Spendings</span>
@@ -77,27 +79,9 @@ const BudgetInitialization = () => {
                             <span className="stat-title">Monthly Spendings</span>
                             <span className="stat-value">₹{getPastMonthTotal(transaction)}</span>
                         </div>
-                        <div className="stat-card">
-                            <span className="stat-title">Entertainment Spendings</span>
-                            <span className="stat-value">₹{getCategoryTotal("Entertainment")}</span>
-                        </div>
-                        <div className="stat-card">
-                            <span className="stat-title">Food Spendings</span>
-                            <span className="stat-value">₹{getCategoryTotal("Food")}</span>
-                        </div>
-                        <div className="stat-card">
-                            <span className="stat-title">Utilities Spendings</span>
-                            <span className="stat-value">₹{getCategoryTotal("Utilities")}</span>
-                        </div>
-                        <div className="stat-card">
-                            <span className="stat-title">Housing Spendings</span>
-                            <span className="stat-value">₹{getCategoryTotal("Housing")}</span>
-                        </div>
-                        <div className="stat-card">
-                            <span className="stat-title">Other Spendings</span>
-                            <span className="stat-value">₹{getCategoryTotal("Other")}</span>
-                        </div>
-                    </div>)}
+                    </div>
+                    <CategoryChart />
+                    </>)}
                 </>
             )}
         </>
