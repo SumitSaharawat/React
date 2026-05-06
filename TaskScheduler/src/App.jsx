@@ -4,6 +4,7 @@ import './App.css'
 function App() {
   const [tasks, setTasks] = useState([]);
   const [name, setName] = useState("");
+  const [isEditing, setIsEditing] = useState(false);
 
   const handleTasks = () => {
     if (!name.trim()) return; 
@@ -54,11 +55,13 @@ function App() {
                 onChange={() => toggleComplete(task.id)}
               />
               <div className="task-info">
-                <span className={`task-name ${task.completed ? 'completed' : ''}`}>{task.name}</span>
+                {!isEditing && <span className={`task-name ${task.completed ? 'completed' : ''}`}>{task.name}</span>}
+                {isEditing && <input></input>}
                 <span className="task-date">{task.date}</span>
               </div>
             </div>
             <button className="btn-delete" onClick={() => deleteTask(task.id)}>Delete</button>
+            <button className="btn-edit" onClick={() => setIsEditing(true)}>Edit</button>
           </li>
         ))}
       </ul>
