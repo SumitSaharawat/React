@@ -70,6 +70,10 @@ export const TransactionProvider = ({ children }) => {
     alert("100 Transactions added!");
 };
 
+// useEffect (() => {
+//   seedMockData();
+// }, [])
+
 const getPastSevenDaysTotal = transaction
     // Filter for transactions that occurred within the last 7 days
     .filter(item => {

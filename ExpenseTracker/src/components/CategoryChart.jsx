@@ -52,8 +52,8 @@ const CategoryChart = () => {
     if (totalSpendings === 0) return null;
 
     return (
-        <div style={{ maxWidth: '450px', margin: '30px auto', padding: '20px', backgroundColor: '#121212', border: '1px solid #333', borderRadius: '12px', boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }}>
-            <h3 style={{ textAlign: 'center', color: '#ddd', marginBottom: '20px', marginTop: '0' }}>Spendings Breakdown</h3>
+        <div className="chart-container">
+            <h3 className="chart-title">Spendings Breakdown</h3>
             <Pie data={data} options={options} />
         </div>
     );
