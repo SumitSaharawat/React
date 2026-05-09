@@ -3,15 +3,20 @@ import './App.css';
 
 function App() {
   // --- 1. STATE ---
-  const [todos, setTodos] = useState([
-    { id: 1, text: "Review LeetCode problem patterns", completed: false },
-    { id: 2, text: "Submit QA Analyst applications", completed: false }
-  ]);
+  const [todos, setTodos] = useState([]);
   
   const [inputText, setInputText] = useState("");
 
+  // --- 1.5 FETCH DATA FROM NODE.JS ---
+  useEffect(() => {
+    fetch("http://localhost:5001/api/todos")
+      .then(res => res.json())
+      .then(data => setTodos(data))
+      .catch(err => console.error("Failed to fetch todos:", err));
+  }, []);
+
   // --- 2. ACTIONS ---
-  const handleAddTodo = (e) => {
+  const handleAddTodo = async (e) => {
     e.preventDefault(); 
     
     if (inputText.trim() === "") return; 
@@ -22,23 +27,58 @@ function App() {
       completed: false
     };
 
-    setTodos([...todos, newTodo]); 
-    setInputText(""); 
-  };
-
-  const deleteTodo = (idToDelete) => {
-    const remainingTodos = todos.filter(todo => todo.id !== idToDelete);
-    setTodos(remainingTodos);
-  };
-
-  const toggleComplete = (idToToggle) => {
-    const updatedTodos = todos.map(todo => {
-      if (todo.id === idToToggle) {
-        return { ...todo, completed: !todo.completed };
+    try {
+      const response = await fetch("http://localhost:5001/api/todos", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newTodo)
+      });
+      if (response.ok) {
+        setTodos([...todos, newTodo]); 
+        setInputText(""); 
       }
-      return todo;
-    });
-    setTodos(updatedTodos);
+    } catch (err) {
+      console.error("Failed to save todo:", err);
+    }
+  };
+
+  const deleteTodo = async (idToDelete) => {
+    try {
+      const response = await fetch(`http://localhost:5001/api/todos/${idToDelete}`, {
+        method: "DELETE"
+      });
+      if (response.ok) {
+        const remainingTodos = todos.filter(todo => todo.id !== idToDelete);
+        setTodos(remainingTodos);
+      }
+    } catch (err) {
+      console.error("Failed to delete todo:", err);
+    }
+  };
+
+  const toggleComplete = async (idToToggle) => {
+    const todoToUpdate = todos.find(todo => todo.id === idToToggle);
+    if (!todoToUpdate) return;
+
+    try {
+      const response = await fetch(`http://localhost:5001/api/todos/${idToToggle}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ completed: !todoToUpdate.completed })
+      });
+      
+      if (response.ok) {
+        const updatedTodos = todos.map(todo => {
+          if (todo.id === idToToggle) {
+            return { ...todo, completed: !todo.completed };
+          }
+          return todo;
+        });
+        setTodos(updatedTodos);
+      }
+    } catch (err) {
+      console.error("Failed to update todo:", err);
+    }
   }
 
   // --- 3. UI RENDER ---
