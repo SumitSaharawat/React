@@ -83,65 +83,43 @@ function App() {
 
   // --- 3. UI RENDER ---
   return (
-    <div style={{ maxWidth: '400px', margin: '50px auto', fontFamily: 'sans-serif' }}>
-      <h2 style={{ textAlign: 'center', color: '#2d3436' }}>My React Todo List</h2>
+    <div className="app-container">
+      <h2 className="app-title">My React Todo List</h2>
 
       {/* The Input Form */}
-      <form onSubmit={handleAddTodo} style={{ marginBottom: '20px', display: 'flex', gap: '10px' }}>
+      <form onSubmit={handleAddTodo} className="todo-form">
         <input 
           type="text" 
           placeholder="Add a new task..." 
           value={inputText} 
           onChange={(e) => setInputText(e.target.value)}
-          style={{ padding: '10px', width: '100%', borderRadius: '4px', border: '1px solid #ccc' }}
+          className="todo-input"
         />
-        <button 
-          type="submit" 
-          style={{ padding: '10px 20px', backgroundColor: '#0984e3', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold' }}
-        >
+        <button type="submit" className="add-btn">
           Add
         </button>
       </form>
 
       {/* The Task List */}
-      <ul style={{ listStyleType: 'none', padding: 0 }}>
+      <ul className="todo-list">
         {todos.map((todo) => (
           <li 
             key={todo.id} 
-            style={{ 
-              display: 'flex', 
-              justifyContent: 'space-between', 
-              alignItems: 'center',
-              marginBottom: '10px',
-              padding: '12px',
-              backgroundColor: '#f8f9fa',
-              borderRadius: '6px',
-              boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
-              textDecoration: todo.completed ? 'line-through' : 'none',
-              opacity: todo.completed ? 0.6 : 1
-            }}
+            className={`todo-item ${todo.completed ? 'completed' : ''}`}
           >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <div className="todo-item-content">
               <input 
                 type="checkbox" 
                 checked={todo.completed}
                 onChange={() => toggleComplete(todo.id)}
-                style={{ cursor: 'pointer', width: '16px', height: '16px' }}
+                className="todo-checkbox"
               />
-              <span style={{ fontSize: '16px', color: '#2d3436' }}>
+              <span className="todo-text">
                 {todo.text}
               </span>
               <button 
               onClick={() => deleteTodo(todo.id)}
-              style={{ 
-                backgroundColor: '#ff7675', 
-                color: 'white', 
-                border: 'none', 
-                borderRadius: '4px', 
-                padding: '6px 12px',
-                cursor: 'pointer',
-                fontWeight: 'bold'
-              }}
+              className="delete-btn"
             >
               Delete
             </button>

@@ -1,10 +1,19 @@
 import { useState } from 'react'
 import './App.css'
+import { useEffect } from 'react';
 
 function App() {
   const [tasks, setTasks] = useState([]);
   const [name, setName] = useState("");
   const [isEditing, setIsEditing] = useState(false);
+
+  useEffect(() => {
+    fetch("http://localhost:5002/tasks")
+    .then(res => res.json())
+    .then(data => setTasks(data))
+    .catch(err => console.error("Failed to fetch tasks:", err));
+  }, []);
+
 
   const handleTasks = () => {
     if (!name.trim()) return; 
@@ -16,12 +25,27 @@ function App() {
       completed: false,
     }
 
-    setTasks([...tasks, newTask])
+    fetch("http://localhost:5002/tasks", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newTask),
+    })
+    .then(res => res.json())
+    .then(data => setTasks([...tasks, data]))
+    .catch(err => console.error("Failed to add task:", err));
     setName(""); // Clears the input field after adding
   }
 
   const deleteTask = (id) => {
-    setTasks(tasks.filter((task) => task.id !== id))
+    fetch(`http://localhost:5002/tasks/${id}`, {
+      method: "DELETE",
+    })
+    .then(() => {
+      setTasks(tasks.filter((task) => task.id !== id));
+    })
+    .catch(err => console.error("Failed to delete task:", err));  
   }
 
   const toggleComplete = (id) => {
