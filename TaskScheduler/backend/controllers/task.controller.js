@@ -21,7 +21,7 @@ const addTask = async (req, res) => {
 const deleteTask = async (req, res) => {
     try{
         const taskId = req.params.id;
-        await taskModel.findOneAndDelete({ id: Number(taskId) });
+        await taskModel.findByIdAndDelete(taskId);
         res.sendStatus(204);
     } catch(error) {
         res.status(500).json({ error: 'Internal Server Error' });
@@ -31,7 +31,7 @@ const deleteTask = async (req, res) => {
 const updateTask = async (req, res) => {
     try {
         const taskId = req.params.id;
-        const updatedTask = await taskModel.findOneAndUpdate({ id: Number(taskId) }, req.body, { new: true });
+        const updatedTask = await taskModel.findByIdAndUpdate(taskId, req.body, { new: true });
         res.json(updatedTask);
     }catch (error){
         res.status(500).json({ error: 'Internal Server Error' });

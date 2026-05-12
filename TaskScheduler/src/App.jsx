@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 import './App.css'
-import { useEffect } from 'react';
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -8,9 +8,8 @@ function App() {
   const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:5002/tasks")
-    .then(res => res.json())
-    .then(data => setTasks(data))
+    axios.get("http://localhost:5002/tasks")
+    .then(res => setTasks(res.data))
     .catch(err => console.error("Failed to fetch tasks:", err));
   }, []);
 
@@ -19,47 +18,33 @@ function App() {
     if (!name.trim()) return; 
 
     const newTask = {
-      id: Date.now(),
       name: name,
       date: new Date().toLocaleString(),
       completed: false,
     }
 
-    fetch("http://localhost:5002/tasks", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newTask),
-    })
-    .then(res => res.json())
-    .then(data => setTasks([...tasks, data]))
+    axios.post("http://localhost:5002/tasks", newTask)
+    .then(res => setTasks([...tasks, res.data]))
     .catch(err => console.error("Failed to add task:", err));
     setName(""); // Clears the input field after adding
   }
 
   const deleteTask = (id) => {
-    fetch(`http://localhost:5002/tasks/${id}`, {
-      method: "DELETE",
-    })
+    axios.delete(`http://localhost:5002/tasks/${id}`)
     .then(() => {
-      setTasks(tasks.filter((task) => task.id !== id));
+      setTasks(tasks.filter((task) => task._id !== id));
     })
     .catch(err => console.error("Failed to delete task:", err));  
   }
 
   const toggleComplete = (id) => {
-    const taskToUpdate = tasks.find(t => t.id === id);
+    const taskToUpdate = tasks.find(t => t._id === id);
     if (!taskToUpdate) return;
 
-    fetch(`http://localhost:5002/tasks/${id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ completed: !taskToUpdate.completed })
-    })
+    axios.put(`http://localhost:5002/tasks/${id}`, { completed: !taskToUpdate.completed })
     .then(() => {
       setTasks(tasks.map((task) => 
-        task.id === id ? { ...task, completed: !task.completed } : task
+        task._id === id ? { ...task, completed: !task.completed } : task
       ));
     })
     .catch(err => console.error("Failed to update task:", err));
@@ -81,20 +66,20 @@ function App() {
 
       <ul className="task-list">
         {tasks.map((task) => (
-          <li key={task.id} className="task-item">
+          <li key={task._id} className="task-item">
             <div className="task-content">
               <input 
                 type="checkbox"
                 className="task-checkbox"
                 checked={task.completed}
-                onChange={() => toggleComplete(task.id)}
+                onChange={() => toggleComplete(task._id)}
               />
               <div className="task-info">
                 <span className="task-name">{task.name}</span>
                 <span className="task-date">{task.date}</span>
               </div>
             </div>
-            <button className="btn-delete" onClick={() => deleteTask(task.id)}>Delete</button>
+            <button className="btn-delete" onClick={() => deleteTask(task._id)}>Delete</button>
           </li>
         ))}
       </ul>
