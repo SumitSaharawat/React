@@ -49,9 +49,20 @@ function App() {
   }
 
   const toggleComplete = (id) => {
-    setTasks(tasks.map((task) => 
-      task.id === id ? { ...task, completed: !task.completed } : task
-    ))
+    const taskToUpdate = tasks.find(t => t.id === id);
+    if (!taskToUpdate) return;
+
+    fetch(`http://localhost:5002/tasks/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ completed: !taskToUpdate.completed })
+    })
+    .then(() => {
+      setTasks(tasks.map((task) => 
+        task.id === id ? { ...task, completed: !task.completed } : task
+      ));
+    })
+    .catch(err => console.error("Failed to update task:", err));
   }
 
   return (
