@@ -90,13 +90,11 @@ function App() {
                 onChange={() => toggleComplete(task.id)}
               />
               <div className="task-info">
-                {!isEditing && <span className={`task-name ${task.completed ? 'completed' : ''}`}>{task.name}</span>}
-                {isEditing && <input></input>}
+                <span className="task-name">{task.name}</span>
                 <span className="task-date">{task.date}</span>
               </div>
             </div>
             <button className="btn-delete" onClick={() => deleteTask(task.id)}>Delete</button>
-            <button className="btn-edit" onClick={() => setIsEditing(true)}>Edit</button>
           </li>
         ))}
       </ul>

@@ -2,7 +2,12 @@ const mongoose = require('mongoose');
 
 const taskSchema = new mongoose.Schema({
     id: Number,
-    name: String,
+    name: {
+        type: String,
+        required: true,
+        trim: true,
+        minLength: 1
+    },
     date: String,
     completed: Boolean
 });
