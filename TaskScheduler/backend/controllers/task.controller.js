@@ -12,6 +12,7 @@ const getTasks = async (req, res) => {
 const addTask = async (req, res) => {
     try {
         const newTask = await taskModel.create(req.body);
+        console.log(req.body);
         res.status(201).json(newTask);
     } catch (error) {
         res.status(500).json({ error: 'Internal Server Error' });
